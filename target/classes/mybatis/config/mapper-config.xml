@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!--alias는 model이랑 연결해주기위해  -->
+	<typeAliases>
+		
+		<typeAlias alias="board" type="com.mycompany.project.model.Board"/>
+		<typeAlias alias="member" type="com.mycompany.project.model.Member"/>
+		<typeAlias alias="account" type="com.mycompany.project.model.Account"/>
+		<typeAlias alias="product" type="com.mycompany.project.model.Product"/>
+		<typeAlias alias="likey" type="com.mycompany.project.model.Likey"/>
+		<typeAlias alias="coupon" type="com.mycompany.project.model.Coupon"/>
+		<typeAlias alias="home" type="com.mycompany.project.model.Home"/>
+		<typeAlias alias="orderby" type="com.mycompany.project.model.Orderby"/>
+		<typeAlias alias="basket" type= "com.mycompany.project.model.Basket"/>
+		<typeAlias alias="productReview" type="com.mycompany.project.model.ProductReview"/>
+	</typeAliases>
+</configuration>

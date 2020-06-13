@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="coupon">
+	
+	<select id="selectListByMid" resultType="coupon">
+		select cno, cmid, cvalue from coupon
+		where cmid=#{cmid}
+	</select>
+	<insert id="insert">
+		insert into coupon(cmid,cvalue) values(#{cmid}, #{cvalue});
+	</insert>
+	<delete id="delete">
+		delete from coupon where cmid=#{cmid} and cvalue=#{cvalue};
+	</delete>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="orderby">
+	<insert id = "insert" parameterType="orderby">
+		insert into orderby (oid, opno, oamount, ototalprice, opay, odate) 
+		values(#{oid}, #{opno}, #{oamount}, #{ototalprice}, #{opay}, now(6));
+	</insert>
+	
+	<select id = "selectAll" resultType="orderby">
+		select oid, opno, oamount, ototalprice, opay, odate from orderby;
+	</select>
+	
+	<select id = "selectAllById" resultType="orderby">
+		select opno, oamount, ototalprice, opay, odate from orderby
+		where oid=#{oid};
+	</select>
+</mapper>

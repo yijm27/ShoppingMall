@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="likey">
+	
+	<select id="selectCountByPno" resultType="likey">
+		select lkpno,count(*) as lkcount from likey
+		where lkpno=#{lkpno}
+	</select>
+	<select id="selectListByMid" resultType="likey">
+		select lkpno,lkkey from likey
+		where lkoid=#{lkoid}
+	</select>
+	<insert id="insert">
+		insert into likey(lkoid,lkpno) values(#{lkoid}, #{lkpno});
+	</insert>
+	<delete id="delete">
+		delete from likey where lkoid=#{lkoid} and lkpno=#{lkpno};
+	</delete>
+</mapper>

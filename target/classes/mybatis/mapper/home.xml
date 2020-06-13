@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="home">
+
+
+	<select id="selectAll" resultType="home">
+		select * from home;
+	</select>
+	<select id="selectBypcolor" resultType="home">
+		SELECT * FROM home WHERE hpno= ANY(SELECT pno FROM product WHERE pcolor= #{pcolor});
+	</select>
+	<select id="selectBypname" resultType="home">
+		SELECT * FROM home WHERE hpno= ANY(SELECT pno FROM product WHERE pname like #{pname});
+	</select>
+		
+	<select id="selectByPage" resultType="home">
+		select *
+		from home
+		order by hno desc
+		limit #{startIndex}, #{rowsPerPage}	;
+	</select>
+	<select id="selectBypcolorByPage" resultType="home">
+		select *
+		from home
+		where hpno= ANY(SELECT pno FROM product WHERE pcolor = #{pcolor})
+		order by hno desc
+		limit #{startIndex}, #{rowsPerPage}	;
+	</select>
+	<select id="selectBypnameByPage" resultType="home">
+		select *
+		from home
+		where hpno= ANY(SELECT pno FROM product WHERE pname like #{pname})
+		order by hno desc
+		limit #{startIndex}, #{rowsPerPage};
+	</select>
+	<select id="selectByHtitle" resultType="home">
+		select *
+		from home
+		where htitle like #{searchHtitle}
+		order by hno desc
+		limit #{startIndex}, #{rowsPerPage};
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from home;
+	</select>
+	<select id="countBypcolor" resultType="int">
+		select count(*) from product where pcolor= #{pcolor};
+	</select>
+	<select id="countBypname" resultType="int">
+		select count(*) from product where pname like #{pname};
+	</select>
+	<select id="countByhtitle" resultType="int">
+		select count(*) from home where htitle like #{htitle};
+	</select>
+	
+</mapper>
+
+
+
+
+

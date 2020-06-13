@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+	<!--parameterType 은 mapper config에서 저장한 alias가 기본 값으로 지정  -->
+	<insert id="insert" parameterType="board" useGeneratedKeys="true" keyProperty="bno">
+		insert into board (btitle, bcontent, bwriter, bhitcount, bdate, bstarscore, battachoname, battachsname, battachtype)
+		values(#{btitle},#{bcontent},#{bwriter}, 0, now(3), 0, #{battachoname}, #{battachsname}, #{battachtype})
+	</insert>
+	
+	<!--결과는 번호만 가져오려면 int 타입  -->
+	<select id="selectByBno" resultType="board">
+		select bno, btitle, bcontent, bwriter, bhitcount, bdate, bstarscore, battachoname, battachsname, battachtype from board where bno = #{bno}
+	</select>
+	
+	<select id="selectAll" resultType="board">
+		select bno, btitle, bcontent, bwriter, bhitcount, bdate, bstarscore, battachoname, battachsname, battachtype from board
+	</select>
+	<select id="selectByPage" resultType="board">
+		select bno, btitle, bcontent, bwriter, bhitcount, bdate, bstarscore 
+		from board 
+		order by bdate desc 
+		limit #{startIndex}, #{rowsPerPage}
+	</select>
+	<select id="selectByPageHit" resultType="board">
+		select bno, btitle, bcontent, bwriter, bhitcount, bdate, bstarscore 
+		from board 
+		order by bhitcount desc 
+		limit #{startIndex}, #{rowsPerPage}
+	</select>
+	<select id="selectByPageDate" resultType="board">
+		select bno, btitle, bcontent, bwriter, bhitcount, bdate, bstarscore 
+		from board 
+		order by bdate
+		limit #{startIndex}, #{rowsPerPage}
+	</select>
+	<select id="selectAllByPage" resultType="board">
+		select * from board
+		where battachtype is not null
+		limit #{startIndex}, #{rowsPerPage}
+	</select>
+	
+	
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	<select id="getcount" resultType="int">
+		select count(*) from board where battachtype is not null
+	</select>
+	<select id="getcountMe" resultType="int">
+		select count(*) from board where bwriter=#{mid}
+	</select>
+	<update id="updateByBno" >
+		update board set btitle=#{btitle}, bcontent=#{bcontent} where bno = #{bno}
+	</update>
+	<update id="updateBhitcountByBno" >
+		update board set bhitcount=bhitcount+1
+		where bno = #{bno}
+	</update>
+	<update id="updateBstarscoreByBno">
+		update board set bstarscore=#{bstarscore}
+		where bno=#{bno}
+	</update>
+	
+	<delete id="deleteByBno">
+		delete from board where bno=#{bno}
+	</delete>
+	
+	<delete id="delete" >
+		delete from board where bno=#{bno}
+	</delete>
+	<update id="update" parameterType="board">
+		update board set btitle=#{btitle}, bcontent=#{bcontent}, bhitcount=#{bhitcount}, bstarscore=#{bstarscore} where bno=#{bno}
+	</update>
+	
+</mapper>

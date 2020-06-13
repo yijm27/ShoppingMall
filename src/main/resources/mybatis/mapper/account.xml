@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="account">
+	<select id="selectAccount" resultType="account">
+		select * from account where aid=#{mid}
+	</select>
+	<update id="withdraw">
+		update account set apoint=apoint-#{point} where aid=#{faid}
+	</update>
+	<update id="save">
+		update account set apoint=apoint+#{point} where aid=#{taid}
+	</update>
+</mapper>

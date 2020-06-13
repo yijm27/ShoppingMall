@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="basket">
+	<insert id = "insert" parameterType="basket">
+		insert into basket (bkoid, bkpno, bkprice) 
+		values(#{bkoid},#{bkpno}, #{bkprice});
+	</insert>
+
+	<select id = "selelctByBkoid" resultType="basket">
+		select bkoid, bkpno, bkprice, bkkey from basket 
+		where bkoid=#{bkoid}
+	</select>
+	<select id = "selectBybkkey" resultType ="basket">
+		select bkoid, bkpno, bkprice, bkkey from basket 
+		where bkkey=#{bkkey}
+	</select>
+	<delete	id = "deleteBybkkey">
+		delete from basket where bkkey =#{bkkey}
+	</delete>
+</mapper>
